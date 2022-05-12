@@ -1,0 +1,11 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.board.mapper.TimeMapper">
+<!-- select는 항상 resultType을 반환한다 -->
+    <select id="getTime2" resultType="String">
+        select now()
+    </select>
+
+</mapper>
