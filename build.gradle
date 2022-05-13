@@ -59,6 +59,9 @@ dependencies {
     //mybatis-spring
     implementation 'org.mybatis:mybatis-spring:2.0.7'
 
+    //jackson-databind
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.2.2'
+
 
 
 }
