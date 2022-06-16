@@ -2,10 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:Mybatis-spirng="http://mybatis.org/schema/mybatis-spring"
+       xmlns:Mybatis-spring="http://mybatis.org/schema/mybatis-spring"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
     <context:component-scan base-package="org.board.sample"/>
+    <context:component-scan base-package="org.board.config"/>
+    <context:component-scan base-package="org.board.service"/>
 
     <!-- DB Connection -->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
@@ -27,5 +29,5 @@
         <property name="mapperLocations" value="classpath:/mappers/**/*.xml"/>
     </bean>
 
-    <Mybatis-spirng:scan base-package="org.board.mapper"/>
+    <Mybatis-spring:scan base-package="org.board.mapper"/>
 </beans>

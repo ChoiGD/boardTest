@@ -28,12 +28,12 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 
     //spring
-    implementation 'org.springframework:spring-context:5.3.19'
-    implementation 'org.springframework:spring-core:5.3.19'
-    implementation 'org.springframework:spring-test:5.3.19'
-    implementation 'org.springframework:spring-jdbc:5.3.19'
-    implementation 'org.springframework:spring-tx:5.3.19'
-    implementation 'org.springframework:spring-webmvc:5.3.19'
+    implementation 'org.springframework:spring-context:5.3.18'
+    implementation 'org.springframework:spring-core:5.3.18'
+    implementation 'org.springframework:spring-test:5.3.18'
+    implementation 'org.springframework:spring-jdbc:5.3.18'
+    implementation 'org.springframework:spring-tx:5.3.18'
+    implementation 'org.springframework:spring-webmvc:5.3.18'
 
 
     //lombok
@@ -62,6 +62,8 @@ dependencies {
     //jackson-databind
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.2.2'
 
+    //modelmapper
+    implementation 'org.modelmapper:modelmapper:3.1.0'
 
 
 }
