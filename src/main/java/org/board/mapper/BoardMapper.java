@@ -10,10 +10,10 @@ public interface BoardMapper {
 
     BoardVO selectOne(Integer bno);
 
-    void register();
+    void register(BoardVO boardVO);
 
-    void modify();
+    void modify(BoardVO boardVO);
 
-    void remove();
+    void remove(Integer bno);
 
 }

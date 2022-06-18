@@ -10,9 +10,9 @@ public interface BoardService {
 
     BoardDTO selectOne(Integer bno);
 
-    void register();
+    void register(BoardDTO boardDTO);
 
-    void modify();
+    void modify(BoardDTO boardDTO);
 
-    void remove();
+    void remove(Integer bno);
 }

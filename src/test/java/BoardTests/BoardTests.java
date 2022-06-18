@@ -37,6 +37,37 @@ public class BoardTests {
         log.info(boardDTO);
     }
 
+    @Test
+    public void registerTest(){
 
+        BoardDTO boardDTO = BoardDTO.builder()
+                .content("test")
+                .title("testTitle")
+                .writer("ChoiGD")
+                .build();
+
+        boardService.register(boardDTO);
+
+    }
+
+    @Test
+    public void modifyTest(){
+        int bno = 32802;
+
+        BoardDTO boardDTO = BoardDTO.builder()
+                .bno(bno)
+                .title("수정된 제목입니다")
+                .content("수정된 내용입니다")
+                .build();
+
+        boardService.modify(boardDTO);
+    }
+
+    @Test
+    public void removeTest(){
+
+        int bno =32803;
+        boardService.remove(bno);
+    }
 
 }

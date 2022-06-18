@@ -16,7 +16,20 @@
     </select>
 
     <insert id="register">
-
+        insert into tbl_board (title, content, writer)
+        values (#{title}, #{content}, #{writer})
     </insert>
+
+    <update id="modify">
+        update tbl_board
+        set title      = #{title},
+            content    = #{content},
+            updateDate = now()
+        where bno = #{bno}
+    </update>
+
+    <delete id="remove">
+        delete from tbl_board where bno = #{bno}
+    </delete>
 
 </mapper>

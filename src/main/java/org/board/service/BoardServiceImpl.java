@@ -39,17 +39,24 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public void register() {
+    public void register(BoardDTO boardDTO) {
+        BoardVO boardVO = modelMapper.map(boardDTO, BoardVO.class);
+        boardMapper.register(boardVO);
+    }
+
+    @Override
+    public void modify(BoardDTO boardDTO) {
+
+        boardMapper.modify(BoardVO.builder()
+                        .bno(boardDTO.getBno())
+                        .title(boardDTO.getTitle())
+                        .content(boardDTO.getContent())
+                .build());
 
     }
 
     @Override
-    public void modify() {
-
-    }
-
-    @Override
-    public void remove() {
-
+    public void remove(Integer bno) {
+        boardMapper.remove(bno);
     }
 }
