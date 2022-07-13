@@ -1,12 +1,13 @@
 package org.board.service;
 
 import org.board.dto.BoardDTO;
+import org.board.dto.ListDTO;
 
 import java.util.List;
 
 public interface BoardService {
 
-    List<BoardDTO> selectList();
+    List<BoardDTO> selectList(ListDTO listDTO);
 
     BoardDTO selectOne(Integer bno);
 

@@ -3,6 +3,7 @@ package org.board.service;
 import lombok.RequiredArgsConstructor;
 import org.board.domain.BoardVO;
 import org.board.dto.BoardDTO;
+import org.board.dto.ListDTO;
 import org.board.mapper.BoardMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -18,9 +19,9 @@ public class BoardServiceImpl implements BoardService{
     private final ModelMapper modelMapper;
 
     @Override
-    public List<BoardDTO> selectList() {
+    public List<BoardDTO> selectList(ListDTO listDTO) {
 
-        List<BoardVO> boardList = boardMapper.selectList();
+        List<BoardVO> boardList = boardMapper.selectList(listDTO);
 
         List<BoardDTO> dtoList = boardList.stream().map(board -> modelMapper
                         .map(board, BoardDTO.class))

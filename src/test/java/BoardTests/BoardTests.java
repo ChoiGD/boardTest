@@ -2,6 +2,7 @@ package BoardTests;
 
 import lombok.extern.log4j.Log4j2;
 import org.board.dto.BoardDTO;
+import org.board.dto.ListDTO;
 import org.board.service.BoardService;
 import org.board.service.BoardServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -22,8 +23,8 @@ public class BoardTests {
 
     @Test
     public void selectListTest(){
-
-        List<BoardDTO> dtoList = boardService.selectList();
+        ListDTO listDTO = new ListDTO();
+        List<BoardDTO> dtoList = boardService.selectList(listDTO);
 
         log.info(dtoList);
     }
