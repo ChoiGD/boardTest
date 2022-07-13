@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.board.domain.BoardVO;
 import org.board.dto.BoardDTO;
 import org.board.dto.ListDTO;
+import org.board.dto.ListResponseDTO;
 import org.board.mapper.BoardMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class BoardServiceImpl implements BoardService{
     private final ModelMapper modelMapper;
 
     @Override
-    public List<BoardDTO> selectList(ListDTO listDTO) {
+    public ListResponseDTO<BoardDTO> selectList(ListDTO listDTO) {
 
         List<BoardVO> boardList = boardMapper.selectList(listDTO);
 
@@ -27,7 +28,8 @@ public class BoardServiceImpl implements BoardService{
                         .map(board, BoardDTO.class))
                 .collect(Collectors.toList());
 
-        return dtoList;
+        //ListResponseDTO를 이용해서 dtoList와 Total 값 넘기기
+        return ListResponseDTO.<BoardDTO>builder().dtoList(dtoList).total(boardMapper.getTotal(listDTO)).build();
     }
 
     @Override

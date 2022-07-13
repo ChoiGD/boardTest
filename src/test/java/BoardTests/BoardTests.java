@@ -1,10 +1,9 @@
 package BoardTests;
 
 import lombok.extern.log4j.Log4j2;
-import org.board.dto.BoardDTO;
+import org.board.domain.BoardVO;
 import org.board.dto.ListDTO;
-import org.board.service.BoardService;
-import org.board.service.BoardServiceImpl;
+import org.board.mapper.BoardMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,8 @@ import java.util.List;
 @ContextConfiguration(locations="file:src/main/webapp/WEB-INF/root-context.xml")
 public class BoardTests {
 
-    @Autowired
-    private BoardServiceImpl boardService;
+    @Autowired(required = false)
+    private BoardMapper boardMapper;
 
     @Test
     public void selectListTest(){
@@ -27,7 +26,7 @@ public class BoardTests {
         listDTO.setType("tcw");
         listDTO.setKeyword("테스트");
 
-        List<BoardDTO> dtoList = boardService.selectList(listDTO);
+        List<BoardVO> dtoList = boardMapper.selectList(listDTO);
 
         dtoList.forEach((board -> log.info(board)));
     }
@@ -36,21 +35,21 @@ public class BoardTests {
     public void selectOneTest(){
 
         int bno = 32760;
-        BoardDTO boardDTO = boardService.selectOne(bno);
+        BoardVO boardVO = boardMapper.selectOne(bno);
 
-        log.info(boardDTO);
+        log.info(boardVO);
     }
 
     @Test
     public void registerTest(){
 
-        BoardDTO boardDTO = BoardDTO.builder()
-                .content("test")
-                .title("testTitle")
+        BoardVO boardVO = BoardVO.builder()
+                .title("Test")
+                .content("Test1")
                 .writer("ChoiGD")
                 .build();
 
-        boardService.register(boardDTO);
+        boardMapper.register(boardVO);
 
     }
 
@@ -58,20 +57,20 @@ public class BoardTests {
     public void modifyTest(){
         int bno = 32802;
 
-        BoardDTO boardDTO = BoardDTO.builder()
+        BoardVO boardVO = BoardVO.builder()
                 .bno(bno)
                 .title("수정된 제목입니다")
                 .content("수정된 내용입니다")
                 .build();
 
-        boardService.modify(boardDTO);
+        boardMapper.modify(boardVO);
     }
 
     @Test
     public void removeTest(){
 
         int bno =32803;
-        boardService.remove(bno);
+        boardMapper.remove(bno);
     }
 
 }
