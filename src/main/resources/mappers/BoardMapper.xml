@@ -4,9 +4,33 @@
 
 <mapper namespace="org.board.mapper.BoardMapper">
 
+    <sql id ="search">
+        <where>
+            <if test="keyword != null">
+                <foreach collection="types" item ="item" separator="OR" open="(" close=")">
+                    <if test='item == "t"'>
+                        title like concat('%', #{keyword}, '%')
+                    </if>
+                    <if test='item == "c"'>
+                        content like concat('%', #{keyword}, '%')
+                    </if>
+                    <if test='item == "w"'>
+                        writer like concat('%', #{keyword}, '%')
+                    </if>
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+
+
     <select id="selectList" resultType="org.board.domain.BoardVO">
         select bno, title, content, writer, regdate, updatedate
         from tbl_board
+
+        <include refid="search"></include>
+        order by bno desc
+        limit #{skip},#{size}
     </select>
 
     <select id="selectOne" resultType="org.board.domain.BoardVO">
@@ -31,5 +55,12 @@
     <delete id="remove">
         delete from tbl_board where bno = #{bno}
     </delete>
+
+    <select id="getTotal" resultType="int">
+
+        select count(bno) from tbl_board
+        <include refid="search"></include>
+
+    </select>
 
 </mapper>
