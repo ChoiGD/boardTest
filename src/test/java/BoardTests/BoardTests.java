@@ -24,9 +24,12 @@ public class BoardTests {
     @Test
     public void selectListTest(){
         ListDTO listDTO = new ListDTO();
+        listDTO.setType("tcw");
+        listDTO.setKeyword("테스트");
+
         List<BoardDTO> dtoList = boardService.selectList(listDTO);
 
-        log.info(dtoList);
+        dtoList.forEach((board -> log.info(board)));
     }
 
     @Test
